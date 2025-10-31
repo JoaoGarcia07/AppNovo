@@ -1,8 +1,8 @@
 // src/services/apiClient.js
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// **IMPORTANTE:** Mude para o IP da sua máquina na rede local (Ex: http://192.168.1.5:8080)
-const API_BASE_URL = 'http://192.168.56.1'; 
+// **CORREÇÃO:** Adicione a porta :8080
+const API_BASE_URL = 'http://192.168.56.1:8080'; 
 
 /**
  * Função global para fazer requisições autenticadas à API.

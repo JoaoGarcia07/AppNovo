@@ -5,18 +5,26 @@ import { fetchApi } from '../services/apiClient';
 
 // (Omissão de tipos para brevidade, mas use o código sugerido na resposta anterior se quiser tipagem completa)
 
-const AuthContext = createContext(null);
+interface AuthContextType {
+    token: string | null;
+    isAuthenticated: boolean;
+    isLoading: boolean;
+    signIn: (email: string, password: string) => Promise<boolean>;
+    signOut: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export const useAuth = () => {
     const context = useContext(AuthContext);
-    if (context === undefined) {
+    if (context === null) {
         throw new Error('useAuth deve ser usado dentro de um AuthProvider');
     }
     return context;
 };
 
-export function AuthProvider({ children }) {
-    const [token, setToken] = useState(null);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+    const [token, setToken] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -33,7 +41,7 @@ export function AuthProvider({ children }) {
         loadToken();
     }, []);
 
-    const signIn = async (email, password) => {
+    const signIn = async (email: string, password: string) => {
         setIsLoading(true);
         try {
             const response = await fetchApi('/auth', { 

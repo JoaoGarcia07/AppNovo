@@ -34,7 +34,7 @@ export default function LoginScreen() {
             // Redireciona para a primeira aba
             router.replace('/(tabs)/home'); 
 
-        } catch (error) {
+        } catch (error: any) {
             const errorMessage = error.message || 'Ocorreu um erro desconhecido durante o login.';
             Alert.alert('Erro no Login', errorMessage);
         } finally {
