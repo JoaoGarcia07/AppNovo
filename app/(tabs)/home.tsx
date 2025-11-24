@@ -155,7 +155,7 @@ const ScoutOfTheMonth = () => (
 
 // --- Tela Principal (Home/Index) ---
 export default function HomeTabScreen() {
-    const heroImageSource = require('../../../assets/images/home-banner.png'); 
+    const heroImageSource = require('../../assets/images/home-banner.png'); 
     
     return (
         <ScrollView style={styles.container}>
